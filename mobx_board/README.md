@@ -1,5 +1,7 @@
 # mobx board
 
+> https://techblog.woowahan.com/2599/
+
 #### 목업 서버 설치
 
 ```

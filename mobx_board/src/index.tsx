@@ -1,10 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import { Provider } from "mobx-react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import todoStore from "./store/todoStore";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider todoStore={todoStore}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Provider>,
+  document.getElementById("root")
 );
