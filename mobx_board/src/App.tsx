@@ -1,17 +1,45 @@
-import { inject } from "mobx-react";
-import { observer } from "mobx-react-lite";
-import React from "react";
-import todoStore from "./store/todoStore";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-interface AppProps {
-  todoStore?: TodoStore;
+// 데이터 타입
+interface Props {
+  id: number;
+  title: string;
+  body: string;
 }
 
-// @observer는 엇 바꼈네 하고 감지하는 것.
-// function 형은 observer를 이런식으로 @ 없이 사용해준다.
-const App = observer((props: AppProps, {}) => {
-  const store = props.todoStore;
-  return <div className="App">{store.todos}</div>;
-});
+const App = () => {
+  // 데이터 담을 상태
+  const [posts, setPosts] = useState<[]>([]);
 
-export default inject("counter")(observer(App));
+  // api
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get("http://localhost:4000/posts");
+      setPosts(response.data);
+    } catch (err) {
+      console.log("에러");
+      throw err;
+    }
+  };
+
+  // api 렌더링
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  return (
+    <>
+      <h1> 게시판 만들기 </h1>
+      <ul>
+        {posts.map((post: Props) => (
+          <li key={post.id}>
+            {post.title} {post.body}
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+};
+
+export default App;
