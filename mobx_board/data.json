@@ -1,15 +1,40 @@
 {
   "posts": [
     {
-      "id": 3,
-      "title": "모레는",
-      "body": "월요일;;;;;;;;;"
+      "id": 1,
+      "title": "짬뽕지존",
+      "recommendaMenu": "순두부짬뽕 매운맛 3단계",
+      "price": 12000
     },
     {
-      "author": "메롱",
-      "title": "메롱입니다.",
-      "content": "내용입니다.",
-      "id": 4
+      "id": 2,
+      "title": "명동칼국수",
+      "recommendaMenu": "바지락칼국수",
+      "price": 6000
+    },
+    {
+      "id": 3,
+      "title": "피그인더가든",
+      "recommendaMenu": "연어포케",
+      "price": 13900
+    },
+    {
+      "id": 4,
+      "title": "신동궁감자탕",
+      "recommendaMenu": "뼈숯불구이",
+      "price": 36000
+    },
+    {
+      "id": 5,
+      "title": "서진식당",
+      "recommendaMenu": "순두부찌개+보쌈",
+      "price": 8000
+    },
+    {
+      "id": 6,
+      "title": "풍국면",
+      "recommendaMenu": "장칼국수",
+      "price": 9000
     }
   ]
 }

@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
+
+html {
+  background-color: #eee;
+}
+.board {
+  width: 800px;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+.board .title {
+  text-align: center;
+}
+
+.header {
+  background-color: #fff;
+  height: 140px;
+  line-height: 140px;
+}
+
+.header .title {
+  width: 800px;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+.post-list {
+  background: #fff;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  padding: 20px;
+}
+
+.board .boardBtn {
+  margin: 20px 0;
+}
+
+.post-list .content p {
+  margin: 7px 0;
+  color: #999;
+  font-weight: 300;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+label:nth-last-of-type(1) {
+  margin-bottom: 0;
+}
+
+label:nth-last-of-type(2) {
+  margin-bottom: 35px;
+}
+
+.board-input {
+  background: #fff;
+  border-radius: 5px;
+  margin-top: 1rem;
+  padding: 20px;
+  height: 250px;
+}
+
+.MuiFormControl-root {
+  width: 80%;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
