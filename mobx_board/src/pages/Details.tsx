@@ -1,9 +1,12 @@
+import { useParams } from "react-router-dom"
 
-const Details = () => {
+const Details = () => {  
+  let {id} = useParams();
+
     return (
       <div className="board">
-      
-     </div>
+        {id}  
+      </div>
     )
 }
 

@@ -42,6 +42,16 @@ a {
   border-radius: 5px;
   margin-bottom: 1rem;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-list a {
+  width: 100%;
+}
+
+.post-list button {
+  font-size: 1.7rem;
 }
 
 .board .boardBtn {
@@ -86,4 +96,16 @@ input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.MuiPagination-ul {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem !important;
 }

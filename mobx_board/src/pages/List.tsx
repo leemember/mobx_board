@@ -3,6 +3,8 @@ import axios from "axios";
 import {Link, useNavigate} from 'react-router-dom'
 import Header from '../components/Header'
 import Button from '../components/Common/Button'
+import { GrTrash } from 'react-icons/gr';
+import Pagination from "../../src/components/Pagination";
 
 // 데이터 타입
 interface Props {
@@ -12,7 +14,7 @@ interface Props {
     price: number;
   }
   
-  const List = () => {
+  const List = ({match}:any) => {
     // 데이터 담을 상태
     const [posts, setPosts] = useState<[]>([]);
     const Navigate = useNavigate();
@@ -36,6 +38,10 @@ interface Props {
     const handleCilck = () => {
       Navigate('/write')
     }
+
+    const handleDelete = () => {
+      alert('삭제 완료')
+    }
   
     return (
       <main>
@@ -46,16 +52,19 @@ interface Props {
           <ul className="posts">
             {posts.map((post: Props, index:number) => (
               <li key={index} className="post-list">
-                  <Link to={`/detail/${post.id}`}>
+                  <Link to={`detail/${post.id}`}>
                     <div className="content">
                       <h3>{post.title}</h3>
                       <p>{post.recommendaMenu}</p>
                       <strong>{post.price} &#65510;</strong>
                     </div>
-                  </Link>              
+                  </Link>
+                  <button type="button" onClick={handleDelete}><GrTrash /></button>
               </li>
             ))}
           </ul>
+
+          <Pagination />
         </div>
       </main>
     );

@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import InputBox, { InputType } from '../components/Common/InputBox'
+import {Link, useNavigate} from 'react-router-dom'
 import Button from '../components/Common/Button'
 import Header from '../components/Header'
 
@@ -8,6 +9,7 @@ const Update = () => {
     const [foodShop, setFoodShop] = useState<string>("");
     const [menu, setMenu] = useState<string>("");
     const [price, setPrice] = useState<number>(0);
+    const Navigate = useNavigate();
 
     const foodText = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFoodShop(e.target.value)
@@ -24,12 +26,17 @@ const Update = () => {
         console.log('가격', e.target.valueAsNumber)
     }
     
+    
+    const handleBack = () => {
+        Navigate('/')  
+    }
+
     return (
         <main>
             <Header text="강남 맛집 수정하기" />
             <div className="board">
                 <form>
-                    <Button cName="boardBtn" text2="등록하기" text1="뒤로가기" />
+                    <Button cName="boardBtn" text2="등록하기" text1="뒤로가기" goBack={handleBack} />
 
                     <div className="board-input">
                         <label>

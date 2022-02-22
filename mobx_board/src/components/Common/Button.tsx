@@ -11,10 +11,10 @@ type Props = {
   text?: string,
   text1?: string,
   text2?: string,
-  text3?: string,
   goLink?: (e: React.MouseEvent<HTMLElement>) => void,
   cName: string,
   type?: 'submit' | 'reset' | 'button';
+  goBack?: (e: React.MouseEvent<HTMLElement>) => void,
 }
 
 
@@ -52,7 +52,7 @@ function CustomButton(props: ButtonUnstyledProps) {
   return <ButtonUnstyled {...props} component={CustomButtonRoot} />;
 }
 
-export default function UnstyledButtonsSimple({text, text1, text2, text3, type, goLink, cName}: Props) {
+export default function UnstyledButtonsSimple({text, text1, text2, type, goLink, goBack, cName}: Props) {
 
   
   const mainPage = window.location.href === 'http://localhost:3000/'
@@ -69,7 +69,7 @@ export default function UnstyledButtonsSimple({text, text1, text2, text3, type, 
     return (
       <>
       <Stack spacing={2} direction="row" className={cName}>      
-        <CustomButton type={type}>{text1}</CustomButton>
+        <CustomButton type={type} onClick={goBack}>{text1}</CustomButton>
         <CustomButton type={type}>{text2}</CustomButton>
       </Stack>
     </>      
