@@ -1,6 +1,6 @@
 # mobx board
 
-> 참고자료 <br> https://techblog.woowahan.com/2599/ <br> https://velog.io/@devstone/React%EC%97%90%EC%84%9C-Axios%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-API-%ED%98%B8%EC%B6%9C%ED%95%98%EA%B8%B0-feat.-fetch-ajax <br> https://velog.io/@i01029407043/MobX-%EA%B0%84%EB%8B%A8%ED%95%98%EA%B2%8C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%ED%95%A8%EC%88%98%ED%98%95 <br> https://velog.io/@fdsa09876/How-to-use-Json-and-Axios-with-React <br> https://poiemaweb.com/json-server
+> 참고자료 <br> https://techblog.woowahan.com/2599/ <br> https://velog.io/@devstone/React%EC%97%90%EC%84%9C-Axios%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-API-%ED%98%B8%EC%B6%9C%ED%95%98%EA%B8%B0-feat.-fetch-ajax <br> https://velog.io/@i01029407043/MobX-%EA%B0%84%EB%8B%A8%ED%95%98%EA%B2%8C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%ED%95%A8%EC%88%98%ED%98%95 <br> https://velog.io/@fdsa09876/How-to-use-Json-and-Axios-with-React <br> https://poiemaweb.com/json-server <br> 몹액스로 api 관리 <br> https://mono.software/2019/04/16/async-webapi-calls-using-react-with-mobx/
 
 #### 목업 서버 설치
 
@@ -36,16 +36,16 @@ $npx i axios
 - tsconfig.json에 ` "experimentalDecorators": true,`를 추가해준다.
 - 라이프사이클에 대한 고민 !
 
-
-----------------------------
+---
 
 ## Mobx
 
 ### service
+
 - HTTP 호출을 위한 서비스를 생성한다.
 - GET 및 메서드가 포함된다.
 
 ### store
+
 - 스토어 생성자를 통해 서비스를 만들고 주입한다.
 - 스토어는 컴포넌트에서 사용할 재사용 가능한 로직과 애플리케이션 UI 상태를 유지하는 곳이다.
-
