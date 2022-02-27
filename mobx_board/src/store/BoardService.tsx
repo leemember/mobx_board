@@ -8,6 +8,7 @@ const boardStore = observable({
   // 리스트 불러오기
   callGet: async (name: string) => {
     const postList = await axios.get(webApiUrl);
+    console.log(postList, name);
   },
 
   // 단일 포스트 불러오기
@@ -22,7 +23,8 @@ const boardStore = observable({
 
   // 삭제
   callDelete: async (name: string) => {
-    const postDelete = await axios.delete(webApiUrl);
+    const postDelete = await axios.delete(`${webApiUrl}/test/`);
+    console.log(postDelete, "삭제했습니다");
   },
 
   // 글 작성하기

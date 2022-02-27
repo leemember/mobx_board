@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { GrTrash } from "react-icons/gr";
-
+import useStore from "../../useStore";
 export interface Posts {
   id: number;
   title: string;
@@ -14,8 +14,11 @@ interface IProps {
 }
 
 const PostList = (props: IProps) => {
-  const handleDelete = () => {
+  const { boardStore } = useStore();
+
+  const handleDelete = (name: any) => {
     alert("삭제 완료");
+    boardStore.boardStore.callDelete(name);
   };
 
   return (
