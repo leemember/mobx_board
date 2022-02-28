@@ -109,3 +109,15 @@ button {
   justify-content: center;
   margin-top: 1rem !important;
 }
+
+.details_board {
+  background: #fff;
+  border-radius: 5px;
+  margin-top: 1rem;
+  padding: 20px;
+  height: 250px;
+}
+
+.MuiPagination-root {
+  padding-bottom: 150px;
+}

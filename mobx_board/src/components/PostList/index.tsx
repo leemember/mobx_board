@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { GrTrash } from "react-icons/gr";
 import useStore from "../../useStore";
+import { AiTwotoneStar } from "react-icons/ai";
+
 export interface Posts {
   id: number;
   title: string;
@@ -14,11 +16,12 @@ interface IProps {
 }
 
 const PostList = (props: IProps) => {
-  const { boardStore } = useStore();
+  const { Board } = useStore();
 
-  const handleDelete = (name: any) => {
+  const handleDelete = () => {
     alert("삭제 완료");
-    boardStore.boardStore.callDelete(name);
+    Board.deletePost(props.post.id)
+    console.log(`${props.post.id} 해당 게시글 삭제를 완료하였습니다.`)    
   };
 
   return (
@@ -26,10 +29,11 @@ const PostList = (props: IProps) => {
       <Link to={`detail/${props.post.id}`}>
         <div className="content">
           <h3>{props.post.title}</h3>
-          <p>{props.post.recommendaMenu}</p>
+          <p>추천메뉴 <AiTwotoneStar />  {props.post.recommendaMenu}</p>
           <strong>{props.post.price} &#65510;</strong>
         </div>
       </Link>
+      {/* 삭제 */}
       <button type="button" onClick={handleDelete}>
         <GrTrash />
       </button>

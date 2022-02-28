@@ -1,36 +1,60 @@
 import axios from "axios";
-import { observable } from "mobx";
-const webApiUrl = "http://localhost:4000";
+import { makeObservable, observable, action, computed } from "mobx";
+const webApiUrl = "http://localhost:4000/posts";
 
-const boardStore = observable({
-  post: [],
+interface PostItem {
+  id: number;
+  title: string;
+  recommendaMenu: string;
+  price: number;
+}
 
-  // 리스트 불러오기
-  callGet: async (name: string) => {
-    const postList = await axios.get(webApiUrl);
-    console.log(postList, name);
-  },
+export class BoardStore {
+  posts: PostItem[] = [];
 
-  // 단일 포스트 불러오기
-  callGetPost: async (name: string) => {
-    const postView = await axios.get(webApiUrl);
-  },
+  constructor() {
+    makeObservable(this, {
+      posts: observable,
 
-  // 게시글 수정하기
-  callPut: async (name: string) => {
-    const putList = await axios.put(webApiUrl);
-  },
+      addPost: action,
+      deletePost: action,
 
-  // 삭제
-  callDelete: async (name: string) => {
-    const postDelete = await axios.delete(`${webApiUrl}/test/`);
-    console.log(postDelete, "삭제했습니다");
-  },
+      getStatus:computed
+    })
+  }
 
-  // 글 작성하기
-  callPost: async (name: string) => {
-    const postWrite = await axios.post(webApiUrl);
-  },
-});
+  addPost = async ( title: string, recommendaMenu: string, price: number) => {
+    try{
+      await axios.post(webApiUrl, {
+        id: +Math.random.toString(),
+        title: title,
+        recommendaMenu: recommendaMenu,
+        price: price
+      }).then((res) => {
+        if(res.status === 200) {
+          this.posts.push()
+        }
+      })
+    } catch(err) {
+      console.log('실패')
+      throw err
+    }
+  }
 
-export default { boardStore };
+  deletePost(id:number){
+    try{
+      const callDelete = axios.delete(`${webApiUrl}/${id}`)
+      console.log(callDelete, "삭제했습니다");
+      window.location.replace('/')
+    } catch(err) {
+      console.log('실패')
+      throw err
+    }
+  }
+
+  get getStatus() {
+   return this.posts
+  }
+}
+
+export const Board = new BoardStore();

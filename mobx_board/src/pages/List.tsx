@@ -9,12 +9,23 @@ import PostList, { Posts } from "../components/PostList";
 // 데이터 타입
 
 const List = () => {
-  // 데이터 담을 상태
-  const [posts, setPosts] = useState<[]>([]);
-  const Navigate = useNavigate();
 
-  // api
-  const fetchUsers = async () => {
+  // 데이터 담을 상태
+ const [posts, setPosts] = useState<[]>([]);
+ const[ currentPage, setCurrentPage ] = useState<number>(1); 
+ const [postsPerPage, setPostsPerPage] = useState<number>(10);
+ const Navigate = useNavigate();
+
+ const indexOfLast = currentPage * postsPerPage;
+ const indexOfFirst = indexOfLast - postsPerPage;
+
+ const currentPosts = (tmp:any) => {
+   let currentPosts = 0;
+   currentPosts = tmp.slice(indexOfFirst, indexOfLast)
+   return currentPosts;
+ }
+  
+ const fetchUsers = async () => {
     try {
       const response = await axios.get("http://localhost:4000/posts");
       setPosts(response.data);

@@ -1,12 +1,6 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "짬뽕지존",
-      "recommendaMenu": "순두부짬뽕 매운맛 3단계",
-      "price": 12000
-    },
-    {
       "id": 2,
       "title": "명동칼국수",
       "recommendaMenu": "바지락칼국수",
@@ -35,6 +29,48 @@
       "title": "풍국면",
       "recommendaMenu": "장칼국수",
       "price": 9000
+    },
+    {
+      "id": 7,
+      "title": "봉추찜닭(배달)",
+      "recommendaMenu": "봉추찜닭 + 치즈떡사리 추가",
+      "price": 20000
+    },
+    {
+      "id": 8,
+      "title": "둑이네곱창(배달)",
+      "recommendaMenu": "야채곱창 + 순대곱창",
+      "price": 73000
+    },
+    {
+      "id": 9,
+      "title": "중경마라탕",
+      "recommendaMenu": "마라탕 (100g)",
+      "price": 7000
+    },
+    {
+      "id": 10,
+      "title": "봉된장",
+      "recommendaMenu": "시래기 된장 비빔",
+      "price": 8000
+    },
+    {
+      "id": 11,
+      "title": "청년감자탕",
+      "recommendaMenu": "묵은지감자탕",
+      "price": 9000
+    },
+    {
+      "id": 12,
+      "title": "곱창고",
+      "recommendaMenu": "모듬 곱창 1인분",
+      "price": 11900
+    },
+    {
+      "id": 13,
+      "title": "돝고기",
+      "recommendaMenu": "숙성 삼겹살 150g",
+      "price": 17000
     }
   ]
 }

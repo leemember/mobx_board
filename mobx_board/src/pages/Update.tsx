@@ -3,12 +3,15 @@ import InputBox, { InputType } from "../components/Common/InputBox";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Common/Button";
 import Header from "../components/Header";
+import useStore from "../useStore";
+
 
 const Update = () => {
   const [foodShop, setFoodShop] = useState<string>("");
   const [menu, setMenu] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
   const Navigate = useNavigate();
+  const { Board } = useStore();
 
   const foodText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFoodShop(e.target.value);
@@ -29,20 +32,22 @@ const Update = () => {
     Navigate("/");
   };
 
-  const onsubmit = (e: React.FormEvent) => {
-    e.preventDefault;
-  };
+  const onSubmit = () => {
+    alert("맛집 등록을 완료하셨습니다.")
+    Board.addPost(foodShop,menu, price)
+  }
 
   return (
     <main>
       <Header text="강남 맛집 수정하기" />
       <div className="board">
-        <form onSubmit={onsubmit}>
+        <form>
           <Button
-            cName="boardBtn"
-            text2="등록하기"
+            cName="boardBtn"            
             text1="뒤로가기"
+            text2="등록하기"
             goBack={handleBack}
+            goLinkTo={onSubmit}
           />
 
           <div className="board-input">
