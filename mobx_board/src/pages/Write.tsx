@@ -28,18 +28,18 @@ const Write = () => {
   };
 
   const handleBack = () => {
-    Navigate('/');
+    Navigate("/");
   };
 
   const onSubmit = useCallback(() => {
-    alert('게시글이 등록되었습니다.')
-    if (foodShop.length > 2 || menu.length > 2){
-        alert('두 글자 이상 입력해주세요')
+    alert("게시글이 등록되었습니다.");
+    if (foodShop.length < 2 || menu.length < 2) {
+      alert("두 글자 이상 입력해주세요");
     } else {
-        Board.addPost(foodShop, menu, price);
-        Navigate('/');
-    }    
-  },[foodShop, menu, price])
+      Board.setAddPost(foodShop, menu, price);
+      Navigate("/");
+    }
+  }, [foodShop, menu, price]);
 
   return (
     <main>
@@ -47,7 +47,7 @@ const Write = () => {
       <div className="board">
         <form>
           <Button
-            cName="boardBtn"            
+            cName="boardBtn"
             text1="뒤로가기"
             text2="등록하기"
             goBack={handleBack}

@@ -5,7 +5,6 @@ import Button from "../components/Common/Button";
 import Header from "../components/Header";
 import useStore from "../useStore";
 
-
 const Update = () => {
   const [foodShop, setFoodShop] = useState<string>("");
   const [menu, setMenu] = useState<string>("");
@@ -33,9 +32,9 @@ const Update = () => {
   };
 
   const onSubmit = () => {
-    alert("맛집 등록을 완료하셨습니다.")
-    Board.addPost(foodShop,menu, price)
-  }
+    alert("맛집 등록을 완료하셨습니다.");
+    Board.setAddPost(foodShop, menu, price);
+  };
 
   return (
     <main>
@@ -43,7 +42,7 @@ const Update = () => {
       <div className="board">
         <form>
           <Button
-            cName="boardBtn"            
+            cName="boardBtn"
             text1="뒤로가기"
             text2="등록하기"
             goBack={handleBack}

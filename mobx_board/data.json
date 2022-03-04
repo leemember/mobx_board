@@ -71,6 +71,12 @@
       "title": "돝고기",
       "recommendaMenu": "숙성 삼겹살 150g",
       "price": 17000
+    },
+    {
+      "id": 14,
+      "title": "김밥천국",
+      "recommendaMenu": "김밥",
+      "price": 2000
     }
   ]
 }

@@ -20,8 +20,8 @@ const PostList = (props: IProps) => {
 
   const handleDelete = () => {
     alert("삭제 완료");
-    Board.deletePost(props.post.id)
-    console.log(`${props.post.id} 해당 게시글 삭제를 완료하였습니다.`)    
+    Board.setDeletePost(props.post.id);
+    console.log(`${props.post.id} 해당 게시글 삭제를 완료하였습니다.`);
   };
 
   return (
@@ -29,7 +29,9 @@ const PostList = (props: IProps) => {
       <Link to={`detail/${props.post.id}`}>
         <div className="content">
           <h3>{props.post.title}</h3>
-          <p>추천메뉴 <AiTwotoneStar />  {props.post.recommendaMenu}</p>
+          <p>
+            추천메뉴 <AiTwotoneStar /> {props.post.recommendaMenu}
+          </p>
           <strong>{props.post.price} &#65510;</strong>
         </div>
       </Link>
