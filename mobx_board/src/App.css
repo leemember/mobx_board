@@ -121,3 +121,22 @@ button {
 .MuiPagination-root {
   padding-bottom: 150px;
 }
+
+.postView {
+  background: #fff;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  padding: 20px;
+  min-height: 250px;
+  font-size: 1.3rem;
+  line-height: 2.2;
+}
+
+.postView li {
+  display: flex;
+  align-items: center;
+}
+
+.postView li h3 {
+  margin-right: 0.6rem;
+}

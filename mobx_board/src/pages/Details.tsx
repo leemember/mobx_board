@@ -4,26 +4,38 @@ import Button from "../components/Common/Button";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import useStore from "../useStore";
 import { Posts } from "../components/PostList";
 
 const Details = () => {
   let { id } = useParams();
-  const { Board } = useStore();
   const Navigate = useNavigate();
-  const [post, setPost] = useState<{}>({});
+  const [post, setPost] = useState<Posts | null>(null);
+  const postInfo = post;
 
+  // 뒤로가기
   const handleBack = () => {
     Navigate("/");
   };
 
+  // 수정하기
   const handleUpdate = () => {
     Navigate("/update");
   };
 
+  // 해당 id 값의 api
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get(`http://localhost:4000/posts/${id}`);
+      setPost(response.data);
+    } catch (err) {
+      console.log("에러");
+      throw err;
+    }
+  };
+
   // api 렌더링
   useEffect(() => {
-    setPost(Board.setPost(id));
+    fetchUsers();
   }, []);
 
   return (
@@ -37,12 +49,18 @@ const Details = () => {
           goLinkTo={handleUpdate}
           goBack={handleBack}
         />
-        {id}
-        <ul className="posts">
+        <ul className="postView">
           <li>
-            {Board.posts.map((item) => {
-              return <div>{item.title}</div>;
-            })}
+            <h3>🏘 가게명</h3>
+            <p>{postInfo?.title}</p>
+          </li>
+          <li>
+            <h3>🍽 추천메뉴</h3>
+            <p>{postInfo?.recommendaMenu}</p>
+          </li>
+          <li>
+            <h3>💳 가격</h3>
+            <p>{postInfo?.price}</p>
           </li>
         </ul>
       </div>
