@@ -128,15 +128,15 @@ button {
   margin-bottom: 1rem;
   padding: 20px;
   min-height: 250px;
-  font-size: 1.3rem;
-  line-height: 2.2;
 }
 
-.postView li {
+.postView div {
   display: flex;
   align-items: center;
 }
 
-.postView li h3 {
+.postView div h3 {
   margin-right: 0.6rem;
+  font-size: 1.2rem;
+  line-height: 2.2;
 }

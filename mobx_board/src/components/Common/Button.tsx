@@ -1,30 +1,29 @@
-import React from 'react';
-import Stack from '@mui/material/Stack';
+import React, { useState } from "react";
+import Stack from "@mui/material/Stack";
 import ButtonUnstyled, {
   buttonUnstyledClasses,
   ButtonUnstyledProps,
-} from '@mui/base/ButtonUnstyled';
-import { styled } from '@mui/system';
-
+} from "@mui/base/ButtonUnstyled";
+import { styled } from "@mui/system";
 
 type Props = {
-  text?: string,
-  text1?: string,
-  text2?: string,
-  goLink?: (e: React.MouseEvent<HTMLElement>) => void,
-  cName: string,
-  type?: 'submit' | 'reset' | 'button';
-  goBack?: (e:React.MouseEvent<HTMLElement>) => void,
-  goLinkTo?: (e:React.MouseEvent<HTMLElement>) => void
-}
-
-
-
-const color = {
-  500: '#ffd200',
+  text?: string;
+  text1?: string;
+  text2?: string;
+  text3?: string;
+  goLink?: (e: React.MouseEvent<HTMLElement>) => void;
+  cName: string;
+  type?: "submit" | "reset" | "button";
+  goBack?: (e: React.MouseEvent<HTMLElement>) => void;
+  goLinkTo?: (e: React.MouseEvent<HTMLElement>) => void;
+  isDone?: boolean;
 };
 
-const CustomButtonRoot = styled('button')`
+const color = {
+  500: "#ffd200",
+};
+
+const CustomButtonRoot = styled("button")`
   font-family: IBM Plex Sans, sans-serif;
   font-weight: bold;
   font-size: 1rem;
@@ -37,7 +36,8 @@ const CustomButtonRoot = styled('button')`
   border: none;
 
   &.${buttonUnstyledClasses.focusVisible} {
-    box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
+    box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1),
+      0 0 0 5px rgba(0, 127, 255, 0.5);
     outline: none;
   }
 
@@ -47,35 +47,45 @@ const CustomButtonRoot = styled('button')`
   }
 `;
 
-
-
 function CustomButton(props: ButtonUnstyledProps) {
   return <ButtonUnstyled {...props} component={CustomButtonRoot} />;
 }
 
-export default function UnstyledButtonsSimple({text, text1, text2, type, goLink, goBack,goLinkTo, cName}: Props) {
+export default function UnstyledButtonsSimple({
+  text,
+  text1,
+  text2,
+  text3,
+  type,
+  goLink,
+  goBack,
+  goLinkTo,
+  cName,
+  isDone,
+}: Props) {
+  const mainPage = window.location.href === "http://localhost:3000/";
 
-  
-  const mainPage = window.location.href === 'http://localhost:3000/'
-  
-  if(mainPage) {
-    return (    
+  if (mainPage) {
+    return (
       <>
-      <Stack spacing={2} direction="row" onClick={goLink} className={cName}>      
-        <CustomButton type={type}>{text}</CustomButton>
-      </Stack>      
-      </>      
-    )
+        <Stack spacing={2} direction="row" onClick={goLink} className={cName}>
+          <CustomButton type={type}>{text}</CustomButton>
+        </Stack>
+      </>
+    );
   } else {
     return (
       <>
-      <Stack spacing={2} direction="row" className={cName}>      
-        <CustomButton type={type} onClick={goBack}>{text1}</CustomButton>
-        <CustomButton type={type} onClick={goLinkTo}>{text2}</CustomButton>
-      </Stack>
-    </>      
-    )    
-  }
+        <Stack spacing={2} direction="row" className={cName}>
+          <CustomButton type={type} onClick={goBack}>
+            {text1}
+          </CustomButton>
 
-  
+          <CustomButton type={type} onClick={goLinkTo}>
+            {isDone ? text3 : text2}
+          </CustomButton>
+        </Stack>
+      </>
+    );
+  }
 }
