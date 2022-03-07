@@ -10,6 +10,7 @@ const Details = () => {
   let { id } = useParams();
   const Navigate = useNavigate();
   const [post, setPost] = useState<Posts | null>(null);
+  const [edit, setEdit] = useState()
   const postInfo = post;
 
   // 뒤로가기
@@ -49,6 +50,7 @@ const Details = () => {
           goLinkTo={handleUpdate}
           goBack={handleBack}
         />
+        
         <ul className="postView">
           <li>
             <h3>🏘 식당명</h3>
