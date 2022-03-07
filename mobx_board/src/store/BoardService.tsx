@@ -22,6 +22,7 @@ export class BoardStore {
       setDeletePost: action,
       setPost: action,
       setPostList: action,
+      setUpdate: action,
 
       getPost: computed,
       getPostList: computed,
@@ -49,14 +50,25 @@ export class BoardStore {
     }
   };
 
+  // 수정하기
+  setUpdate = async (id: number | string | undefined) => {
+    try {
+      await axios.put(`${webApiUrl}/${id}`);
+      window.location.replace("/update");
+      console.log("수정하기 완료");
+    } catch (err) {
+      console.log("수정하기 실패");
+      throw err;
+    }
+  };
+
   // 게시물 삭제
   setDeletePost = async (id: number) => {
     try {
-      const callDelete = await axios.delete(`${webApiUrl}/${id}`);
-      console.log(callDelete, "삭제했습니다");
+      await axios.delete(`${webApiUrl}/${id}`);
       window.location.replace("/");
     } catch (err) {
-      console.log("실패");
+      console.log("게시물삭제 실패");
       throw err;
     }
   };
@@ -64,8 +76,8 @@ export class BoardStore {
   // 게시물 리스트 불러오기
   setPostList = async () => {
     try {
-      const callPost = (await axios.get(`${webApiUrl}`)).data;
-      console.log(callPost, "postList");
+      const callPostList = (await axios.get(`${webApiUrl}`)).data;
+      console.log(callPostList, "postList");
     } catch (err) {
       console.log("실패");
       throw err;

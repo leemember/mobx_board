@@ -51,7 +51,7 @@ const Details = () => {
         />
         <ul className="postView">
           <li>
-            <h3>🏘 가게명</h3>
+            <h3>🏘 식당명</h3>
             <p>{postInfo?.title}</p>
           </li>
           <li>

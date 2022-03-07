@@ -1,18 +1,6 @@
 {
   "posts": [
     {
-      "id": 2,
-      "title": "명동칼국수",
-      "recommendaMenu": "바지락칼국수",
-      "price": 6000
-    },
-    {
-      "id": 3,
-      "title": "피그인더가든",
-      "recommendaMenu": "연어포케",
-      "price": 13900
-    },
-    {
       "id": 4,
       "title": "신동궁감자탕",
       "recommendaMenu": "뼈숯불구이",
@@ -71,12 +59,6 @@
       "title": "돝고기",
       "recommendaMenu": "숙성 삼겹살 150g",
       "price": 17000
-    },
-    {
-      "id": 14,
-      "title": "김밥천국",
-      "recommendaMenu": "김밥",
-      "price": 2000
     }
   ]
 }

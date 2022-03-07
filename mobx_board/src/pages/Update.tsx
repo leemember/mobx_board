@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import InputBox, { InputType } from "../components/Common/InputBox";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/Common/Button";
 import Header from "../components/Header";
 import useStore from "../useStore";
 
 const Update = () => {
+  let { id } = useParams();
   const [foodShop, setFoodShop] = useState<string>("");
   const [menu, setMenu] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
@@ -32,8 +33,8 @@ const Update = () => {
   };
 
   const onSubmit = () => {
-    alert("맛집 등록을 완료하셨습니다.");
-    Board.setAddPost(foodShop, menu, price);
+    Board.setUpdate(id);
+    alert("내용 수정 완료하셨습니다.");
   };
 
   return (
