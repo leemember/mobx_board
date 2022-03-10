@@ -1,6 +1,24 @@
 {
   "posts": [
     {
+      "id": 1,
+      "title": "오렌지",
+      "recommendaMenu": "오렌지나무",
+      "price": 36000
+    },
+    {
+      "id": 2,
+      "title": "사과",
+      "recommendaMenu": "사과나무",
+      "price": 8000
+    },
+    {
+      "id": 3,
+      "title": "귤",
+      "recommendaMenu": "귤나무",
+      "price": 9000
+    },
+    {
       "id": 4,
       "title": "신동궁감자탕",
       "recommendaMenu": "뼈숯불구이",
@@ -41,24 +59,6 @@
       "title": "봉된장",
       "recommendaMenu": "시래기 된장 비빔",
       "price": 8000
-    },
-    {
-      "id": 11,
-      "title": "청년감자탕",
-      "recommendaMenu": "묵은지감자탕",
-      "price": 9000
-    },
-    {
-      "id": 12,
-      "title": "곱창고",
-      "recommendaMenu": "모듬 곱창 1인분",
-      "price": 11900
-    },
-    {
-      "id": 13,
-      "title": "돝고기",
-      "recommendaMenu": "숙성 삼겹살 150g",
-      "price": 17000
     }
   ]
 }

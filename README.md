@@ -17,6 +17,28 @@ $npm start
 - json-server
 - material-UI
 
+```
+📦 src
+ ┣ 📂 components
+ ┃ ┃ ┣ 📂 Common
+ ┃ ┃ ┃ ┣ 📜 Button.tsx 📍 공통 버튼. 페이지 경로 조건에 따라 1개 또는 2개
+ ┃ ┃ ┃ ┣ 📜 InputBox.tsx 📍 공통 input form
+ ┃ ┃ ┣ 📂 Header.tsx 📍 공통 헤더
+ ┃ ┃ ┣ 📂 Pagination.tsx 📍 페이징네이션
+ ┃ ┃ ┣ 📂 PostDetail.tsx 📍 게시글 내용물
+ ┃ ┃ ┣ 📂 PostList.tsx 📍 게시글 목록 리스트 map으로 뿌려 보여지도록
+ ┃ ┃ ┣ 📂 PostUpdate.tsx 📍 Detail 페이지에 '수정하기' 버튼 클릭시 수정할 수 있는 폼으로 전환
+ ┣ 📂 pages
+ ┃ ┣ 📜 Details.tsx 📍 게시글 페이지 및 수정하기
+ ┃ ┣ 📜 List.tsx 📍 게시글 리스트 및 삭제
+ ┃ ┣ 📜 Write.tsx 📍 게시글 작성
+ ┣ 📂 store
+ ┃ ┣ 📜 BoardService.tsx 📍 게시판 CRUD 상태관리
+ ┣ 📜 index.tsx 📍 mobx 연동
+ ┣ 📜 useStore.tsx 📍 mobx 상태관리 hook으로 꺼내쓸 수 있도록 root 연결망
+ ┣ 📜 App.tsx 📍 라우팅 관리
+```
+
 <br>
 
 ---
@@ -79,7 +101,14 @@ $npx json-server ./data.json --port 4000
 
 1. 리덕스의 장단점 + (왜 많은 회사에서 리덕스를 아직까지 많이 사용하는지)
 2. mobx의 장단점
+
+-
+
 3. 컴포넌트 분리한 기준
+
+- 공통으로 `자주 사용되는` 컴포넌트
+- 데이터를 `배열`로 뿌려줘야 될 것들
+- 코드량이 무분별하게 길어질 것 같은 것들
 
 <br>
 

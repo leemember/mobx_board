@@ -3,43 +3,40 @@ import { useEffect, useState } from "react";
 import Button from "../components/Common/Button";
 import Header from "../components/Header";
 import PostUpdate from "../components/PostUpdate";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Posts } from "../components/PostList";
+import { useHistory } from "react-router-dom";
+import useStore from "../useStore";
+import {observer} from 'mobx-react-lite'
+import { toJS } from "mobx";
+import PostView from "../components/PostView";
 
 const Details = () => {
-  let { id } = useParams();
-  const Navigate = useNavigate();
-  const [post, setPost] = useState<Posts | null>(null);
-  const [edit, setEdit] = useState<boolean>(false);
-  const postInfo = post;
+  let { id } = useParams<{ id: string }>();
+  const history = useHistory();
+  const [edit, setEdit] = useState<boolean>(false);  
+  const { Board } = useStore();
 
-  // 뒤로가기
+  // 목록으로 가기
   const handleBack = () => {
-    Navigate("/");
+    history.push("/");
   };
 
   // 수정하기
   const handleUpdate = () => {
     setEdit(!edit);
   };
-
-  // 해당 id 값의 api
-  const fetchUsers = async () => {
-    try {
-      const response = await axios.get(`http://localhost:4000/posts/${id}`);
-      setPost(response.data);
-    } catch (err) {
-      console.log("에러");
-      throw err;
-    }
-  };
-
+  
   // api 렌더링
   useEffect(() => {
-    fetchUsers();
+    Board.setPost(id)
   }, []);
 
+  // proxy를 이쁘장하게 보여줌
+  console.log(toJS(Board.post));
+
+  if (!Board.post) {
+    return null;
+  }
+  
   return (
     <main>
       <Header text="강남 맛집 투어" />
@@ -55,31 +52,19 @@ const Details = () => {
 
         {edit ? (
           <PostUpdate
-            foodCon={postInfo?.title}
-            menuCon={postInfo?.recommendaMenu}
-            priceCon={postInfo?.price}
+            foodCon={Board.post.title}
+            menuCon={Board.post.recommendaMenu}
+            priceCon={Board.post.price}
           />
         ) : (
-          <section className="postView">
-            <div>
-              <h3>🏘 식당명</h3>
-              <p>{postInfo?.title}</p>
-            </div>
-
-            <div>
-              <h3>🍽 추천메뉴</h3>
-              <p>{postInfo?.recommendaMenu}</p>
-            </div>
-
-            <div>
-              <h3>💳 가격</h3>
-              <p>{postInfo?.price}</p>
-            </div>
-          </section>
+          <>
+          <PostView post={Board.post} />
+          </>
+          
         )}
       </div>
     </main>
   );
 };
 
-export default Details;
+export default observer(Details);

@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import InputBox, { InputType } from "../components/Common/InputBox";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Button from "../components/Common/Button";
 import Header from "../components/Header";
 import useStore from "../useStore";
@@ -9,7 +9,7 @@ const Write = () => {
   const [foodShop, setFoodShop] = useState<string>("");
   const [menu, setMenu] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
-  const Navigate = useNavigate();
+  const history = useHistory();
   const { Board } = useStore();
 
   const foodText = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +28,7 @@ const Write = () => {
   };
 
   const handleBack = () => {
-    Navigate("/");
+    history.push("/");
   };
 
   const onSubmit = useCallback(() => {
@@ -37,7 +37,7 @@ const Write = () => {
       alert("두 글자 이상 입력해주세요");
     } else {
       Board.setAddPost(foodShop, menu, price);
-      Navigate("/");
+      history.push("/");
     }
   }, [foodShop, menu, price]);
 

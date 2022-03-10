@@ -1,49 +1,37 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Header from "../components/Header";
 import Button from "../components/Common/Button";
 import Pagination from "../../src/components/Pagination";
 import PostList, { Posts } from "../components/PostList";
 import useStore from "../useStore";
+import {observer} from 'mobx-react-lite'
+
 
 // 데이터 타입
 
 const List = () => {
-  // 데이터 담을 상태
-  const [posts, setPosts] = useState<[]>([]);
   const { Board } = useStore();
-  //  const[ currentPage, setCurrentPage ] = useState<number>(1);
-  //  const [postsPerPage, setPostsPerPage] = useState<number>(10);
-  const Navigate = useNavigate();
+  const history = useHistory();
 
-  //  const indexOfLast = currentPage * postsPerPage;
-  //  const indexOfFirst = indexOfLast - postsPerPage;
+  // 현재 페이지
+  const[ currentPage, setCurrentPage ] = useState<number>(1);
+  
+  // 전체 페이지에서 등분
+  const [postsPerPage, setPostsPerPage] = useState<number>(5);
 
-  //  const currentPosts = (tmp:any) => {
-  //    let currentPosts = 0;
-  //    currentPosts = tmp.slice(indexOfFirst, indexOfLast)
-  //    return currentPosts;
-  //  }
-
-  const fetchUsers = async () => {
-    try {
-      const response = await axios.get("http://localhost:4000/posts");
-      setPosts(response.data);
-      console.log("res->", response.data);
-    } catch (err) {
-      console.log("에러");
-      throw err;
-    }
-  };
+  // 해당 페이지 첫 번째와 마지막 인덱스 번호
+  const indexOfLast:number = currentPage * postsPerPage;
+  const indexOfFirst:number = indexOfLast - postsPerPage;
+  const currentPosts = Board.getPost.slice(indexOfFirst, indexOfLast)
 
   // api 렌더링
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    Board.setPostList()
+  }, [Board.setPostList]);
 
   const handleCilck = () => {
-    Navigate("/write");
+    history.push("/write");
   };
 
   return (
@@ -53,14 +41,14 @@ const List = () => {
         <Button text="글쓰기" goLink={handleCilck} cName="boardBtn" />
 
         <ul className="posts">
-          {posts.map((post: Posts, index: number) => (
+          {currentPosts.map((post: Posts, index: number) => (
             <PostList post={post} key={index} />
           ))}
         </ul>
 
-        <Pagination />
+        <Pagination postsPerPage={postsPerPage} totalPosts={Board.getPost.length} paginate={setCurrentPage} />
       </div>
     </main>
   );
 };
-export default List;
+export default observer(List);
