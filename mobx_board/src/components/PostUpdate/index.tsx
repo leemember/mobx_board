@@ -4,36 +4,38 @@ import InputBox, { InputType } from "../Common/InputBox";
 import { useParams } from "react-router-dom";
 
 type Props = {
-  foodCon: string | undefined | {};
-  menuCon: string | undefined | {};
-  priceCon: number | undefined | {};
+  foodCon: string | undefined;
+  menuCon: string | undefined;
+  priceCon: number | undefined;
+  handleUpdate?: () => void;
 };
 
-const PostUpdate = ({ foodCon, menuCon, priceCon }: Props) => {
+const PostUpdate = ({ foodCon, menuCon, priceCon, handleUpdate }: Props) => {
   let { id } = useParams<{ id: string }>();
   const [foodShop, setFoodShop] = useState<string | undefined | any>(foodCon);
   const [menu, setMenu] = useState<string | undefined | any>(menuCon);
   const [price, setPrice] = useState<number | undefined | any>(priceCon);
 
-
+  // 식당명
   const foodText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFoodShop(e.target.value);
-    console.log("식당명", e.target.value);
   };
 
+  // 추천메뉴
   const menuText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMenu(e.target.value);
-    console.log("메뉴", e.target.value);
   };
 
+  // 가격
   const priceNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(Number(e.target.valueAsNumber));
-    console.log("가격", e.target.valueAsNumber);
   };
 
+ // 수정 내용으로 등록하기
   const updateBtn = useCallback(() => {
     alert("수정 완료하였습니다.")
-    Board.setUpdate(id, foodShop, menu, price)    
+    handleUpdate && handleUpdate()
+    Board.setUpdate(id, foodShop, menu, price);
   },[id, foodShop, menu, price])
  
   return (

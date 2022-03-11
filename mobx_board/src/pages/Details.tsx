@@ -1,12 +1,9 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import Button from "../components/Common/Button";
+import { useEffect, useState, useCallback } from "react";
 import Header from "../components/Header";
 import PostUpdate from "../components/PostUpdate";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import useStore from "../useStore";
 import {observer} from 'mobx-react-lite'
-import { toJS } from "mobx";
 import PostView from "../components/PostView";
 
 const Details = () => {
@@ -21,17 +18,20 @@ const Details = () => {
   };
 
   // 수정하기
-  const handleUpdate = () => {
+  const handleUpdate = useCallback(() => {
     setEdit(!edit);
-  };
-  
+  },[edit]);
+
+  const handleDelete = useCallback(() => {
+    Board.setDeletePost(id);
+    alert("게시물을 삭제 하셨습니다.");
+    history.push("/");
+  }, [Board, history, id]);
+
   // api 렌더링
   useEffect(() => {
-    Board.setPost(id)
-  }, []);
-
-  // proxy를 이쁘장하게 보여줌
-  console.log(toJS(Board.post));
+    Board.setPost(id)    
+  }, [Board, id]);
 
   if (!Board.post) {
     return null;
@@ -41,27 +41,23 @@ const Details = () => {
     <main>
       <Header text="강남 맛집 투어" />
       <div className="board">
-        <Button
-          cName="boardBtn"
-          text1="목록보기"
-          text2="수정하기"
-          text3="등록하기"
-          goLinkTo={handleUpdate}
-          goBack={handleBack}
-        />
-
+        <button type="button" className="boardBtn blank" onClick={handleBack}>목록보기</button>
+        <button type="button" className="boardBtn" onClick={handleUpdate}>{edit ? '취소하기' : '수정하기'}</button>
+        
         {edit ? (
           <PostUpdate
             foodCon={Board.post.title}
             menuCon={Board.post.recommendaMenu}
             priceCon={Board.post.price}
+            handleUpdate={handleUpdate}
           />
         ) : (
           <>
-          <PostView post={Board.post} />
-          </>
-          
+           <PostView post={Board.post} />
+           <button type="button" className="update" onClick={handleDelete}>삭제하기</button>
+          </> 
         )}
+        
       </div>
     </main>
   );

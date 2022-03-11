@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
 import InputBox, { InputType } from "../components/Common/InputBox";
 import { useHistory } from "react-router-dom";
-import Button from "../components/Common/Button";
 import Header from "../components/Header";
 import useStore from "../useStore";
 
@@ -46,13 +45,8 @@ const Write = () => {
       <Header text="강남 맛집 등록하기" />
       <div className="board">
         <form>
-          <Button
-            cName="boardBtn"
-            text1="뒤로가기"
-            text2="등록하기"
-            goBack={handleBack}
-            goLinkTo={onSubmit}
-          />
+        <button type="button" className="boardBtn blank" onClick={handleBack}>뒤로가기</button>
+        <button type="button" className="boardBtn" onClick={onSubmit}>등록하기</button>
 
           <div className="board-input">
             <label>

@@ -56,6 +56,17 @@ a {
 
 .board .boardBtn {
   margin: 20px 0;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: #ffd200;
+  padding: 12px 24px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 200;
+}
+
+.board .boardBtn.blank {
+  margin-right: 1rem;
 }
 
 .post-list .content p {
@@ -142,7 +153,7 @@ button {
 }
 
 .update {
-  font-weight: bold;
+  font-weight: 200;
   font-size: 1rem;
   background-color: #ff8800;
   padding: 12px 24px;

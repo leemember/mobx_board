@@ -1,11 +1,15 @@
 import axios from "axios";
-import { makeObservable, observable, action, computed } from "mobx";
+import { makeObservable, observable, action, computed, configure  } from "mobx";
+import { v4 as uuidv4 } from 'uuid';
 
+configure({
+  enforceActions: "never",
+})
 
 const webApiUrl = "http://localhost:4000/posts";
 
 export interface PostItem {
-  id: number;
+  id: string;
   title: string;
   recommendaMenu: string;
   price: number;
@@ -26,7 +30,8 @@ export class BoardStore {
       setPostList: action,
       setUpdate: action,
 
-      getPost: computed
+      getPost: computed,
+      getPostDetail: computed
     });
   }
 
@@ -35,7 +40,7 @@ export class BoardStore {
     try {
       await axios
         .post(webApiUrl, {
-          id: +Math.random.toString(),
+          id: uuidv4(),
           title: title,
           recommendaMenu: recommendaMenu,
           price: price,
@@ -54,6 +59,8 @@ export class BoardStore {
   // 수정하기
   setUpdate = async (id: number | undefined | string, title: string, recommendaMenu: string, price: number ) => {
     try {
+      const putItem = this.posts.find(itme => itme.id === id);
+
       await axios.put(`${webApiUrl}/${id}`, {
         id: id,
         title: title,
@@ -62,7 +69,9 @@ export class BoardStore {
       })
       .then((res) => {
         if(res.status === 200) {
-          console.log("수정하기 완료");
+          console.log("수정하기 완료"); 
+          this.post = res.data    
+          console.log('res-->',res)
         }
       })
     } catch (err) {
@@ -72,10 +81,10 @@ export class BoardStore {
   };
 
   // 게시물 삭제
-  setDeletePost = async (id: number) => {
+  setDeletePost = async (id: string) => {
     try {
       await axios.delete(`${webApiUrl}/${id}`);      
-      return this.posts.filter(v => v.id !== id);
+      this.posts = this.posts.filter(v => v.id !== id);
     } catch (err) {
       console.log("에러")
     }
@@ -95,10 +104,10 @@ export class BoardStore {
   };
 
   // 단일 게시물 불러오기
-  setPost = async (id: string | number | undefined) => {
+  setPost = async (id: string) => {
     try {
       const callPost = (await axios.get(`${webApiUrl}/${id}`)).data;
-      console.log(callPost, "단일 게시물");      
+      console.log(callPost, "단일 게시물");
       return this.post = callPost;      
     } catch (err) {
       console.log("실패");
