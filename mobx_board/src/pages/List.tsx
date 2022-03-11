@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import useStore from "../useStore";
 import {observer} from 'mobx-react-lite'
-import Header from "../components/Header";
+import Header from "../components/Common/Header";
 import Pagination from "../../src/components/Pagination";
 import PostList, { Posts } from "../components/PostList";
 

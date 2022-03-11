@@ -3,7 +3,7 @@ import useStore from "../useStore";
 import { useHistory } from "react-router-dom";
 import {observer} from 'mobx-react-lite'
 import InputBox, { InputType } from "../components/Common/InputBox";
-import Header from "../components/Header";
+import Header from "../components/Common/Header";
 
 
 const Write = () => {

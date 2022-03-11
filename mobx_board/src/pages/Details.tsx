@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import useStore from "../useStore";
 import {observer} from 'mobx-react-lite'
-import Header from "../components/Header";
+import Header from "../components/Common/Header";
 import PostUpdate from "../components/PostUpdate";
 import PostView from "../components/PostView";
 

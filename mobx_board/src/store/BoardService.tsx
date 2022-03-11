@@ -106,7 +106,7 @@ export class BoardStore {
     try {
       const callPost = (await axios.get(`${webApiUrl}/${id}`)).data;
       console.log(callPost, "단일 게시물");
-      return this.post = callPost;      
+      this.post = callPost;
     } catch (err) {
       console.log("실패");
       throw err;
