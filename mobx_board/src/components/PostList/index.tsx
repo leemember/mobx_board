@@ -1,9 +1,5 @@
 import { Link } from "react-router-dom";
-import { GrTrash } from "react-icons/gr";
-import useStore from "../../useStore";
 import { AiTwotoneStar } from "react-icons/ai";
-import { useCallback } from "react";
-import {observer} from 'mobx-react-lite'
 
 export interface Posts {
   id: string;
@@ -17,7 +13,6 @@ interface IProps {
 }
 
 const PostList = (props: IProps) => {
-  const { Board } = useStore();
 
   return (
     <li className="post-list">
@@ -34,4 +29,4 @@ const PostList = (props: IProps) => {
   );
 };
 
-export default observer(PostList);
+export default PostList;

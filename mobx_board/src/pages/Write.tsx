@@ -1,35 +1,40 @@
 import React, { useCallback, useState } from "react";
-import InputBox, { InputType } from "../components/Common/InputBox";
-import { useHistory } from "react-router-dom";
-import Header from "../components/Header";
 import useStore from "../useStore";
+import { useHistory } from "react-router-dom";
+import {observer} from 'mobx-react-lite'
+import InputBox, { InputType } from "../components/Common/InputBox";
+import Header from "../components/Header";
+
 
 const Write = () => {
-  const [foodShop, setFoodShop] = useState<string>("");
-  const [menu, setMenu] = useState<string>("");
-  const [price, setPrice] = useState<number>(0);
   const history = useHistory();
   const { Board } = useStore();
 
+  const [foodShop, setFoodShop] = useState<string>("");
+  const [menu, setMenu] = useState<string>("");
+  const [price, setPrice] = useState<number>(0);
+
+  // 식당명
   const foodText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFoodShop(e.target.value);
-    console.log("식당명", e.target.value);
   };
 
+  // 추천메뉴
   const menuText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMenu(e.target.value);
-    console.log("메뉴", e.target.value);
   };
 
+  // 가격
   const priceNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(Number(e.target.valueAsNumber));
-    console.log("가격", e.target.valueAsNumber);
   };
 
+  // 목록으로 이동
   const handleBack = () => {
     history.push("/");
   };
 
+  // 등록하기
   const onSubmit = useCallback(() => {
     alert("게시글이 등록되었습니다.");
     if (foodShop.length < 2 || menu.length < 2) {
@@ -85,4 +90,4 @@ const Write = () => {
   );
 };
 
-export default Write;
+export default observer(Write);

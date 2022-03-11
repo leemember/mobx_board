@@ -6,6 +6,7 @@ configure({
   enforceActions: "never",
 })
 
+// 목업 api 주소
 const webApiUrl = "http://localhost:4000/posts";
 
 export interface PostItem {

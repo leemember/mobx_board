@@ -1,5 +1,3 @@
-import {observer} from 'mobx-react-lite'
-
 interface IProps {
   post: {
     id: string;
@@ -32,4 +30,4 @@ const PostView = (props: IProps) => {
   );
 };
 
-export default observer(PostView);
+export default PostView;

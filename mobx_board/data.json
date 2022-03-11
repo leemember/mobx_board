@@ -41,6 +41,12 @@
       "title": "노량진 회센터",
       "recommendaMenu": "모듬회",
       "price": 10000
+    },
+    {
+      "id": "740048ce-ce48-4355-9e2b-9b233e6cd4d0",
+      "title": "만나서",
+      "recommendaMenu": "반궈",
+      "price": 10100
     }
   ]
 }
