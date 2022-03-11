@@ -36,7 +36,7 @@ export class BoardStore {
     });
   }
 
-  // 게시물 추가
+  // 게시글 등록
   setAddPost = async (title: string, recommendaMenu: string, price: number) => {
     try {
       await axios
@@ -60,8 +60,6 @@ export class BoardStore {
   // 수정하기
   setUpdate = async (id: number | undefined | string, title: string, recommendaMenu: string, price: number ) => {
     try {
-      const putItem = this.posts.find(itme => itme.id === id);
-
       await axios.put(`${webApiUrl}/${id}`, {
         id: id,
         title: title,
@@ -71,8 +69,7 @@ export class BoardStore {
       .then((res) => {
         if(res.status === 200) {
           console.log("수정하기 완료"); 
-          this.post = res.data    
-          console.log('res-->',res)
+          this.post = res.data 
         }
       })
     } catch (err) {
