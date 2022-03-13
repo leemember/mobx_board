@@ -3,12 +3,12 @@ import { Board } from "../../store/BoardService";
 import InputBox, { InputType } from "../Common/InputBox";
 import { useParams } from "react-router-dom";
 
-type Props = {
+interface Props {
   foodCon: string | undefined;
   menuCon: string | undefined;
   priceCon: number | undefined;
   handleUpdate?: () => void;
-};
+}
 
 const PostUpdate = ({ foodCon, menuCon, priceCon, handleUpdate }: Props) => {
   let { id } = useParams<{ id: string }>();
@@ -31,13 +31,13 @@ const PostUpdate = ({ foodCon, menuCon, priceCon, handleUpdate }: Props) => {
     setPrice(Number(e.target.valueAsNumber));
   };
 
- // 수정 내용으로 등록하기
+  // 수정 내용으로 등록하기
   const updateBtn = useCallback(() => {
-    alert("수정 완료하였습니다.")
-    handleUpdate && handleUpdate()
+    alert("수정 완료하였습니다.");
+    handleUpdate && handleUpdate();
     Board.setUpdate(id, foodShop, menu, price);
-  },[id, foodShop, menu, price])
- 
+  }, [id, foodShop, menu, price]);
+
   return (
     <form>
       <div className="board-input">
@@ -72,7 +72,9 @@ const PostUpdate = ({ foodCon, menuCon, priceCon, handleUpdate }: Props) => {
         </label>
       </div>
 
-      <button type="button" onClick={updateBtn} className="update">등록하기</button>
+      <button type="button" onClick={updateBtn} className="update">
+        등록하기
+      </button>
     </form>
   );
 };
