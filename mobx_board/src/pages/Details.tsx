@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import useStore from "../useStore";
-import {observer} from 'mobx-react-lite'
+import { observer } from "mobx-react-lite";
 import Header from "../components/Common/Header";
 import PostUpdate from "../components/PostUpdate";
 import PostView from "../components/PostView";
@@ -9,7 +9,7 @@ import PostView from "../components/PostView";
 const Details = () => {
   let { id } = useParams<{ id: string }>();
   const history = useHistory();
-  const [edit, setEdit] = useState<boolean>(false);  
+  const [edit, setEdit] = useState<boolean>(false);
   const { Board } = useStore();
 
   // 목록으로 이동
@@ -20,7 +20,7 @@ const Details = () => {
   // 수정하기
   const handleUpdate = useCallback(() => {
     setEdit(!edit);
-  },[edit]);
+  }, [edit]);
 
   // 삭제하기
   const handleDelete = useCallback(() => {
@@ -31,20 +31,31 @@ const Details = () => {
 
   // api 렌더링
   useEffect(() => {
-    Board.setPost(id)    
+    Board.setPost(id);
   }, [Board, id]);
+
+  // 떠나는 시점에 post 데이터 비워내기
+  useEffect(() => {
+    return () => {
+      Board.ClearPost();
+    };
+  }, [Board]);
 
   if (!Board.post) {
     return null;
   }
-  
+
   return (
     <main>
       <Header text="강남 맛집 투어" />
       <div className="board">
-        <button type="button" className="boardBtn blank" onClick={handleBack}>목록보기</button>
-        <button type="button" className="boardBtn" onClick={handleUpdate}>{edit ? '취소하기' : '수정하기'}</button>
-        
+        <button type="button" className="boardBtn blank" onClick={handleBack}>
+          목록보기
+        </button>
+        <button type="button" className="boardBtn" onClick={handleUpdate}>
+          {edit ? "취소하기" : "수정하기"}
+        </button>
+
         {edit ? (
           <PostUpdate
             foodCon={Board.post.title}
@@ -54,11 +65,12 @@ const Details = () => {
           />
         ) : (
           <>
-           <PostView post={Board.post} />
-           <button type="button" className="update" onClick={handleDelete}>삭제하기</button>
-          </> 
+            <PostView post={Board.post} />
+            <button type="button" className="update" onClick={handleDelete}>
+              삭제하기
+            </button>
+          </>
         )}
-        
       </div>
     </main>
   );

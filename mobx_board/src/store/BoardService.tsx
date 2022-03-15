@@ -18,7 +18,7 @@ export interface PostItem {
 
 export class BoardStore {
   posts: PostItem[] = [];
-  post: PostItem | undefined;
+  post?: PostItem | null;
 
   constructor() {
     makeObservable<object>(this, {
@@ -116,6 +116,11 @@ export class BoardStore {
       console.log("실패");
       throw err;
     }
+  };
+
+  // 게시물 데이터 비우기
+  ClearPost = () => {
+    return (this.post = null);
   };
 
   // 게시물 조회
