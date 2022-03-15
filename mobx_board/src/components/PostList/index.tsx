@@ -8,12 +8,11 @@ export interface Posts {
   price: number;
 }
 
-interface IProps {
+interface PostListProps {
   post: Posts;
 }
 
-const PostList = (props: IProps) => {
-
+const PostList = (props: PostListProps) => {
   return (
     <li className="post-list">
       <Link to={`detail/${props.post.id}`}>

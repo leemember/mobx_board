@@ -5,6 +5,10 @@ import { observer } from "mobx-react-lite";
 import Header from "../components/Common/Header";
 import Pagination from "../../src/components/Pagination";
 import PostList, { Posts } from "../components/PostList";
+import qs from "querystring";
+
+// 한 페이지당 보여지는 게시물 수
+const POSTS_PAGE = 5;
 
 const List = () => {
   const { Board } = useStore();
@@ -13,12 +17,9 @@ const List = () => {
   // 현재 페이지
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  // 전체 페이지에서 등분
-  const [postsPerPage] = useState<number>(5);
-
   // 해당 페이지 첫 번째와 마지막 인덱스 번호
-  const indexOfLast: number = currentPage * postsPerPage;
-  const indexOfFirst: number = indexOfLast - postsPerPage;
+  const indexOfLast: number = currentPage * POSTS_PAGE;
+  const indexOfFirst: number = indexOfLast - POSTS_PAGE;
   const currentPosts = Board.getPost.slice(indexOfFirst, indexOfLast);
 
   // api 렌더링
@@ -26,15 +27,21 @@ const List = () => {
     Board.setPostList();
   }, [Board]);
 
-  const handleCilck = () => {
+  // 글쓰기
+  const handleWrite = () => {
     history.push("/write");
+  };
+
+  const handleCurrentPage = (page: number) => {
+    setCurrentPage(page);
+    console.log(page);
   };
 
   return (
     <main>
       <Header text="강남 맛집 투어" />
       <div className="board">
-        <button type="button" onClick={handleCilck} className="boardBtn">
+        <button type="button" onClick={handleWrite} className="boardBtn">
           글쓰기
         </button>
 
@@ -45,9 +52,9 @@ const List = () => {
         </ul>
 
         <Pagination
-          postsPerPage={postsPerPage}
+          postsPerPage={POSTS_PAGE}
           totalPosts={Board.getPost.length}
-          paginate={setCurrentPage}
+          onClick={handleCurrentPage}
         />
       </div>
     </main>

@@ -1,10 +1,9 @@
 import React, { useCallback, useState } from "react";
 import useStore from "../useStore";
 import { useHistory } from "react-router-dom";
-import {observer} from 'mobx-react-lite'
+import { observer } from "mobx-react-lite";
 import InputBox, { InputType } from "../components/Common/InputBox";
 import Header from "../components/Common/Header";
-
 
 const Write = () => {
   const history = useHistory();
@@ -50,8 +49,12 @@ const Write = () => {
       <Header text="강남 맛집 등록하기" />
       <div className="board">
         <form>
-        <button type="button" className="boardBtn blank" onClick={handleBack}>뒤로가기</button>
-        <button type="button" className="boardBtn" onClick={onSubmit}>등록하기</button>
+          <button type="button" className="boardBtn blank" onClick={handleBack}>
+            뒤로가기
+          </button>
+          <button type="button" className="boardBtn" onClick={onSubmit}>
+            등록하기
+          </button>
 
           <div className="board-input">
             <label>

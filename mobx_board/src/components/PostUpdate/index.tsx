@@ -11,7 +11,7 @@ interface Props {
 }
 
 const PostUpdate = ({ foodCon, menuCon, priceCon, handleUpdate }: Props) => {
-  let { id } = useParams<{ id: string }>();
+  let { id = "" } = useParams<{ id: string }>();
   const [foodShop, setFoodShop] = useState<string | undefined | any>(foodCon);
   const [menu, setMenu] = useState<string | undefined | any>(menuCon);
   const [price, setPrice] = useState<number | undefined | any>(priceCon);
