@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useStore from "../useStore";
 import { observer } from "mobx-react-lite";
 import Header from "../components/Common/Header";
@@ -7,14 +7,14 @@ import PostUpdate from "../components/PostUpdate";
 import PostView from "../components/PostView";
 
 const Details = () => {
-  let { id } = useParams<{ id: string }>();
-  const history = useHistory();
+  let { id = "" } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [edit, setEdit] = useState<boolean>(false);
   const { Board } = useStore();
 
   // 목록으로 이동
   const handleBack = () => {
-    history.push("/");
+    navigate("/");
   };
 
   // 수정하기
@@ -26,8 +26,8 @@ const Details = () => {
   const handleDelete = useCallback(() => {
     Board.setDeletePost(id);
     alert("게시물을 삭제 하셨습니다.");
-    history.push("/");
-  }, [Board, history, id]);
+    navigate("/");
+  }, [Board, navigate, id]);
 
   // api 렌더링
   useEffect(() => {

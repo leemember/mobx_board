@@ -1,18 +1,17 @@
-import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useEffect, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import useStore from "../useStore";
 import { observer } from "mobx-react-lite";
 import Header from "../components/Common/Header";
 import Pagination from "../../src/components/Pagination";
 import PostList, { Posts } from "../components/PostList";
-import qs from "querystring";
 
 // 한 페이지당 보여지는 게시물 수
 const POSTS_PAGE = 5;
 
 const List = () => {
   const { Board } = useStore();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   // 현재 페이지
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -27,15 +26,20 @@ const List = () => {
     Board.setPostList();
   }, [Board]);
 
+  // url 쿼리스트링
+  useEffect(() => {
+    navigate(`/?page=${currentPage}`);
+  }, [currentPage]);
+
   // 글쓰기
   const handleWrite = () => {
-    history.push("/write");
+    navigate("/write");
   };
 
-  const handleCurrentPage = (page: number) => {
+  // 현재 페이지 감지
+  const handleCurrentPage = useCallback((page: number) => {
     setCurrentPage(page);
-    console.log(page);
-  };
+  }, []);
 
   return (
     <main>

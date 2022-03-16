@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from "react";
 import useStore from "../useStore";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import InputBox, { InputType } from "../components/Common/InputBox";
 import Header from "../components/Common/Header";
 
 const Write = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { Board } = useStore();
 
   const [foodShop, setFoodShop] = useState<string>("");
@@ -30,7 +30,7 @@ const Write = () => {
 
   // 목록으로 이동
   const handleBack = () => {
-    history.push("/");
+    navigate("/");
   };
 
   // 등록하기
@@ -40,7 +40,7 @@ const Write = () => {
       alert("두 글자 이상 입력해주세요");
     } else {
       Board.setAddPost(foodShop, menu, price);
-      history.push("/");
+      navigate("/");
     }
   }, [foodShop, menu, price]);
 
