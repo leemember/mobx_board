@@ -60,9 +60,9 @@ export class BoardStore {
   // 수정하기
   setUpdate = async (
     id: number | string,
-    title: string,
-    recommendaMenu: string,
-    price: number
+    title?: string,
+    recommendaMenu?: string,
+    price?: number
   ) => {
     try {
       await axios

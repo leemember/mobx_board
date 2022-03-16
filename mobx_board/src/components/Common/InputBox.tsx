@@ -6,6 +6,7 @@ export const enum InputType {
 }
 
 type Props = {
+  name:string,
   text: string,
   type: InputType,
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
