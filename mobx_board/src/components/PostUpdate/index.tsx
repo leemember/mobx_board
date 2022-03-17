@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Board } from "../../store/BoardService";
 import InputBox, { InputType } from "../Common/InputBox";
-import { WriteProps } from '../../pages/Write'
+import { WriteProps } from "../../pages/Write";
 
 interface Props {
   foodCon: string;
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const PostUpdate = ({ foodCon, menuCon, priceCon, handleUpdate }: Props) => {
-  let { id = '' } = useParams<{ id: string }>();
+  let { id = "" } = useParams<{ id: string }>();
 
   const [formInfo, setFormInfo] = useState<WriteProps>({
     foodShop: foodCon,
@@ -23,16 +23,16 @@ const PostUpdate = ({ foodCon, menuCon, priceCon, handleUpdate }: Props) => {
   const handleString = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormInfo({
       ...formInfo,
-      [e.target.name]: [e.target.value]
+      [e.target.name]: [e.target.value],
     });
   };
 
   // 수정 내용으로 등록하기
-  const updateBtn = () => {
+  const updateBtn = useCallback(() => {
     alert("수정 완료하였습니다.");
     handleUpdate && handleUpdate();
     Board.setUpdate(id, formInfo.foodShop, formInfo.menu, formInfo.price);
-  };
+  }, [id, formInfo.foodShop, formInfo.menu, formInfo.price]);
 
   return (
     <form>

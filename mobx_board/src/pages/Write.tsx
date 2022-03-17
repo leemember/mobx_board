@@ -5,7 +5,6 @@ import { observer } from "mobx-react-lite";
 import InputBox, { InputType } from "../components/Common/InputBox";
 import Header from "../components/Common/Header";
 
-
 export interface WriteProps {
   foodShop: string;
   menu: string;
@@ -15,7 +14,6 @@ export interface WriteProps {
 const Write = () => {
   const navigate = useNavigate();
   const { Board } = useStore();
-
   const [formInfo, setFormInfo] = useState<WriteProps>({
     foodShop: "",
     menu: "",
@@ -23,10 +21,10 @@ const Write = () => {
   });
 
   // 식당명
-  const handleWrite = (e: React.ChangeEvent<HTMLInputElement>) => { 
+  const handleWrite = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormInfo({
       ...formInfo,
-      [e.target.name]: [e.target.value]
+      [e.target.name]: [e.target.value],
     });
   };
 
@@ -36,7 +34,7 @@ const Write = () => {
   };
 
   // 등록하기
-  const onSubmit = () => {
+  const onSubmit = useCallback(() => {
     alert("게시글이 등록되었습니다.");
 
     if (formInfo.foodShop.length > 2 || formInfo.menu.length > 2) {
@@ -45,7 +43,7 @@ const Write = () => {
       Board.setAddPost(formInfo.foodShop, formInfo.menu, formInfo.price);
       navigate("/");
     }
-  }
+  }, [formInfo.foodShop, formInfo.menu, formInfo.price]);
 
   return (
     <main>
