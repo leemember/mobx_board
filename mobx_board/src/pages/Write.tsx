@@ -24,7 +24,7 @@ const Write = () => {
 
   // 식당명
   const handleWrite = (e: React.ChangeEvent<HTMLInputElement>) => {    
-    const { name, value } = e.target
+    const { name, value } = e.target;
 
     setFormInfo({
       ...formInfo,
@@ -62,6 +62,12 @@ const Write = () => {
           </button>
 
           <div className="board-input">
+          <input
+          name="text"
+          onInput={(e)=>{
+            console.log(e)
+          }}
+        />
             <label>
               식당명
               <InputBox

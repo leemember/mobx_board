@@ -13,8 +13,18 @@ const List = () => {
   const { Board } = useStore();
   const navigate = useNavigate();
 
-  // 현재 페이지
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  /**
+   * 문자열을 number 형태로
+   * replace("찾을 문자열", "변경할 문자열")
+   * 현재 위치를 숫자형만 문자열로 바꾸어준다.
+   */
+  const pageNum = Number(window.location.search.replace(/[^0-9]/gi, ''));
+
+  /*
+   * 현재 위치값
+   * pageNum이 아니라면 1, 아니면 pageNum
+   */
+  const [currentPage, setCurrentPage] = useState<number>(!pageNum ? 1 : pageNum);
 
   // 해당 페이지 첫 번째와 마지막 인덱스 번호
   const indexOfLast: number = currentPage * POSTS_PAGE;
