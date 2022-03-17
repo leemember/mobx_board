@@ -30,6 +30,7 @@ export class BoardStore {
       setPost: action,
       setPostList: action,
       setUpdate: action,
+      setClearPost: action,
 
       getPost: computed,
       getPostDetail: computed,
@@ -119,7 +120,7 @@ export class BoardStore {
   };
 
   // 게시물 데이터 비우기
-  ClearPost = () => {
+  setClearPost = () => {
     return (this.post = null);
   };
 

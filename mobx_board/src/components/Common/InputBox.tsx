@@ -8,13 +8,13 @@ export const enum InputType {
 type Props = {
   name:string,
   text: string,
-  type: InputType,
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  type: InputType, 
   value?: string | number
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
-export default function BasicTextFields({text, type,value, handleChange}: Props) {
+export default function BasicTextFields({text, type,value, onChange, name}: Props) {
   return (
-    <TextField id="outlined-basic" label={text} variant="outlined" type={type} onChange={handleChange} value={value}/>
+    <TextField id="outlined-basic" label={text} variant="outlined" type={type} onChange={onChange} value={value} name={name}/>
   );
 }

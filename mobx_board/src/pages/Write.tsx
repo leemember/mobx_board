@@ -5,23 +5,30 @@ import { observer } from "mobx-react-lite";
 import InputBox, { InputType } from "../components/Common/InputBox";
 import Header from "../components/Common/Header";
 
+
+interface WriteProps {
+  foodShop: string;
+  menu: string;
+  price: number;
+}
+
 const Write = () => {
   const navigate = useNavigate();
   const { Board } = useStore();
 
-  const [formInfo, setFormInfo] = useState({
+  const [formInfo, setFormInfo] = useState<WriteProps>({
     foodShop: "",
     menu: "",
     price: 0,
   });
 
   // 식당명
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+  const handleWrite = (e: React.ChangeEvent<HTMLInputElement>) => {    
+    const { name, value } = e.target
 
     setFormInfo({
       ...formInfo,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
@@ -33,6 +40,7 @@ const Write = () => {
   // 등록하기
   const onSubmit = useCallback(() => {
     alert("게시글이 등록되었습니다.");
+
     if (formInfo.foodShop.length < 2 || formInfo.menu.length < 2) {
       alert("두 글자 이상 입력해주세요");
     } else {
@@ -60,7 +68,7 @@ const Write = () => {
                 name="foodShop"
                 text="식당명을 입력하세요"
                 type={InputType.TEXT}
-                handleChange={handleInputChange}
+                onChange={handleWrite}
                 value={formInfo.foodShop}
               />
             </label>
@@ -71,7 +79,7 @@ const Write = () => {
                 name="menu"
                 text="추천메뉴를 입력하세요"
                 type={InputType.TEXT}
-                handleChange={handleInputChange}
+                onChange={handleWrite}
                 value={formInfo.menu}
               />
             </label>
@@ -82,7 +90,7 @@ const Write = () => {
                 name="price"
                 text="가격을 입력하세요 (숫자만)"
                 type={InputType.NUMBER}
-                handleChange={handleInputChange}
+                onChange={handleWrite}
                 value={formInfo.price}
               />
             </label>

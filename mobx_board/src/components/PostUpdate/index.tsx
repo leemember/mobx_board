@@ -2,12 +2,14 @@ import React, { useCallback, useState } from "react";
 import { Board } from "../../store/BoardService";
 import InputBox, { InputType } from "../Common/InputBox";
 import { useParams } from "react-router-dom";
+
 interface Props {
   foodCon: string;
   menuCon: string;
   priceCon: number;
   handleUpdate?: () => void;
 }
+
 interface PostUpdateProps {
   foodShop: string;
   menu: string;
@@ -26,6 +28,7 @@ const PostUpdate = ({ foodCon, menuCon, priceCon, handleUpdate }: Props) => {
   const handleString = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormInfo({
       ...formInfo,
+      [e.target.name]: [e.target.value]
     });
   };
 
@@ -44,7 +47,7 @@ const PostUpdate = ({ foodCon, menuCon, priceCon, handleUpdate }: Props) => {
           <InputBox
             text="식당명을 입력하세요"
             type={InputType.TEXT}
-            handleChange={handleString}
+            onChange={handleString}
             value={formInfo.foodShop}
             name="foodShop"
           />
@@ -55,7 +58,7 @@ const PostUpdate = ({ foodCon, menuCon, priceCon, handleUpdate }: Props) => {
           <InputBox
             text="추천메뉴를 입력하세요"
             type={InputType.TEXT}
-            handleChange={handleString}
+            onChange={handleString}
             value={formInfo.menu}
             name="menu"
           />
@@ -66,7 +69,7 @@ const PostUpdate = ({ foodCon, menuCon, priceCon, handleUpdate }: Props) => {
           <InputBox
             text="가격을 입력하세요 (숫자만)"
             type={InputType.NUMBER}
-            handleChange={handleString}
+            onChange={handleString}
             value={formInfo.price}
             name="price"
           />

@@ -8,9 +8,9 @@ import PostView from "../components/PostView";
 
 const Details = () => {
   let { id = "" } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-  const [edit, setEdit] = useState<boolean>(false);
+  const navigate = useNavigate();  
   const { Board } = useStore();
+  const [edit, setEdit] = useState<boolean>(false);
 
   // 목록으로 이동
   const handleBack = () => {
@@ -37,7 +37,7 @@ const Details = () => {
   // 떠나는 시점에 post 데이터 비워내기
   useEffect(() => {
     return () => {
-      Board.ClearPost();
+      Board.setClearPost();
     };
   }, [Board]);
 
