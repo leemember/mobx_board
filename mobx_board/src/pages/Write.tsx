@@ -6,7 +6,7 @@ import InputBox, { InputType } from "../components/Common/InputBox";
 import Header from "../components/Common/Header";
 
 
-interface WriteProps {
+export interface WriteProps {
   foodShop: string;
   menu: string;
   price: number;
@@ -23,12 +23,10 @@ const Write = () => {
   });
 
   // 식당명
-  const handleWrite = (e: React.ChangeEvent<HTMLInputElement>) => {    
-    const { name, value } = e.target;
-
+  const handleWrite = (e: React.ChangeEvent<HTMLInputElement>) => { 
     setFormInfo({
       ...formInfo,
-      [name]: value,
+      [e.target.name]: [e.target.value]
     });
   };
 
@@ -38,16 +36,16 @@ const Write = () => {
   };
 
   // 등록하기
-  const onSubmit = useCallback(() => {
+  const onSubmit = () => {
     alert("게시글이 등록되었습니다.");
 
-    if (formInfo.foodShop.length < 2 || formInfo.menu.length < 2) {
+    if (formInfo.foodShop.length > 2 || formInfo.menu.length > 2) {
       alert("두 글자 이상 입력해주세요");
     } else {
       Board.setAddPost(formInfo.foodShop, formInfo.menu, formInfo.price);
       navigate("/");
     }
-  }, [formInfo.foodShop, formInfo.menu, formInfo.price]);
+  }
 
   return (
     <main>
@@ -62,12 +60,6 @@ const Write = () => {
           </button>
 
           <div className="board-input">
-          <input
-          name="text"
-          onInput={(e)=>{
-            console.log(e)
-          }}
-        />
             <label>
               식당명
               <InputBox

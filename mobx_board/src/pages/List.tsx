@@ -22,7 +22,8 @@ const List = () => {
 
   /*
    * 현재 위치값
-   * pageNum이 아니라면 1, 아니면 pageNum
+   * pageNum이 아니라면 1, 맞다면 pageNum
+   * pageNum === 현재 머무는 브라우저 위치
    */
   const [currentPage, setCurrentPage] = useState<number>(!pageNum ? 1 : pageNum);
 

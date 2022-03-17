@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useStore from "../useStore";
 import { observer } from "mobx-react-lite";
+import useStore from "../useStore";
 import Header from "../components/Common/Header";
 import PostUpdate from "../components/PostUpdate";
 import PostView from "../components/PostView";
@@ -29,17 +29,12 @@ const Details = () => {
     navigate("/");
   }, [Board, navigate, id]);
 
-  // api 렌더링
   useEffect(() => {
     Board.setPost(id);
-  }, [Board, id]);
-
-  // 떠나는 시점에 post 데이터 비워내기
-  useEffect(() => {
     return () => {
       Board.setClearPost();
     };
-  }, [Board]);
+  }, [Board, id]);
 
   if (!Board.post) {
     return null;
